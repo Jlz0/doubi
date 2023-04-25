@@ -403,7 +403,7 @@ getipv4(){
 	if [[ -z "${ipv4}" ]]; then
 		ipv4=$(wget -qO- -4 -t1 -T2 api.ip.sb/ip)
 		if [[ -z "${ipv4}" ]]; then
-			ipv4=$(wget -qO- -4 -t1 -T2 members.3322.org/dyndns/getip)
+			ipv4=$(wget -qO- -4 -t1 -T2 4.ipw.cn)
 			if [[ -z "${ipv4}" ]]; then
 				ipv4="IPv4_Error"
 			fi
@@ -411,7 +411,7 @@ getipv4(){
 	fi
 }
 getipv6(){
-	ipv6=$(wget -qO- -6 -t1 -T2 ifconfig.co)
+	ipv6=$(wget -qO- -6 -t1 -T2 6.ipw.cn)
 	if [[ -z "${ipv6}" ]]; then
 		ipv6="IPv6_Error"
 	fi
@@ -429,7 +429,7 @@ ss_link_qr(){
 		fi
 		SSbase64=$(urlsafe_base64 "${cipher_1}:${password}@${ipv4}:${port}")
 		SSurl="ss://${SSbase64}"
-		SSQRcode="http://doub.pw/qr/qr.php?text=${SSurl}"
+		SSQRcode="https://api.pwmqr.com/qrcode/create/?url=${SSurl}"
 		ss_link_ipv4=" 链接  [ipv4] : ${Red_font_prefix}${SSurl}${Font_color_suffix} \n 二维码[ipv4] : ${Red_font_prefix}${SSQRcode}${Font_color_suffix}"
 	fi
 	if [[ "${ipv6}" != "IPv6_Error" ]]; then
@@ -440,7 +440,7 @@ ss_link_qr(){
 		fi
 		SSbase64=$(urlsafe_base64 "${cipher_1}:${password}@${ipv6}:${port}")
 		SSurl="ss://${SSbase64}"
-		SSQRcode="http://doub.pw/qr/qr.php?text=${SSurl}"
+		SSQRcode="https://api.pwmqr.com/qrcode/create/?url=${SSurl}"
 		ss_link_ipv6=" 链接  [ipv6] : ${Red_font_prefix}${SSurl}${Font_color_suffix} \n 二维码[ipv6] : ${Red_font_prefix}${SSQRcode}${Font_color_suffix}"
 	fi
 }
